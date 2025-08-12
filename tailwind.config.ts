@@ -10,10 +10,19 @@ export default {
       padding: "2rem",
       screens: {
         "2xl": "1400px",
+        "3xl": "1600px",
       },
     },
     extend: {
       colors: {
+        brand: {
+          primary: "hsl(238, 77%, 62%)",
+          secondary: "hsl(262, 83%, 58%)",
+          accent: "hsl(215, 100%, 50%)",
+          success: "hsl(142, 76%, 36%)",
+          warning: "hsl(38, 92%, 50%)",
+          error: "hsl(0, 84%, 60%)",
+        },
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
