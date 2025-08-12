@@ -9,7 +9,12 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import BusinessSetup from "./pages/BusinessSetup";
 import Dashboard from "./pages/Dashboard";
+import CreateCampaign from "./pages/CreateCampaign";
+import Campaigns from "./pages/Campaigns";
+import Contacts from "./pages/Contacts";
+import Settings from "./pages/Settings";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -24,7 +29,12 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path="/business-setup" element={<BusinessSetup />} />
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/create-campaign" element={<CreateCampaign />} />
+          <Route path="/campaigns" element={<Campaigns />} />
+          <Route path="/contacts" element={<Contacts />} />
+          <Route path="/settings" element={<Settings />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
