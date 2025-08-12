@@ -37,9 +37,11 @@ export default function Dashboard() {
               <Button variant="ghost" size="sm">
                 <Bell className="w-4 h-4" />
               </Button>
-              <Button variant="ghost" size="sm">
-                <Settings className="w-4 h-4" />
-              </Button>
+              <Link to="/settings">
+                <Button variant="ghost" size="sm">
+                  <Settings className="w-4 h-4" />
+                </Button>
+              </Link>
               <div className="w-8 h-8 bg-indigo-100 rounded-full flex items-center justify-center">
                 <span className="text-sm font-medium text-indigo-600">JD</span>
               </div>
