@@ -225,41 +225,47 @@ export default function Dashboard() {
 
         {/* Quick Actions */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <Card className="hover:shadow-lg transition-shadow cursor-pointer">
-            <CardHeader>
-              <div className="w-12 h-12 bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-lg flex items-center justify-center mb-4">
-                <Plus className="w-6 h-6 text-white" />
-              </div>
-              <CardTitle>Create Campaign</CardTitle>
-              <CardDescription>
-                Set up a new SMS or email campaign to request reviews from your customers.
-              </CardDescription>
-            </CardHeader>
-          </Card>
+          <Link to="/create-campaign">
+            <Card className="hover:shadow-lg transition-shadow cursor-pointer">
+              <CardHeader>
+                <div className="w-12 h-12 bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-lg flex items-center justify-center mb-4">
+                  <Plus className="w-6 h-6 text-white" />
+                </div>
+                <CardTitle>Create Campaign</CardTitle>
+                <CardDescription>
+                  Set up a new SMS or email campaign to request reviews from your customers.
+                </CardDescription>
+              </CardHeader>
+            </Card>
+          </Link>
 
-          <Card className="hover:shadow-lg transition-shadow cursor-pointer">
-            <CardHeader>
-              <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-green-600 rounded-lg flex items-center justify-center mb-4">
-                <Users className="w-6 h-6 text-white" />
-              </div>
-              <CardTitle>Manage Contacts</CardTitle>
-              <CardDescription>
-                Upload customer lists via CSV or add individual contacts to your database.
-              </CardDescription>
-            </CardHeader>
-          </Card>
+          <Link to="/contacts">
+            <Card className="hover:shadow-lg transition-shadow cursor-pointer">
+              <CardHeader>
+                <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-green-600 rounded-lg flex items-center justify-center mb-4">
+                  <Users className="w-6 h-6 text-white" />
+                </div>
+                <CardTitle>Manage Contacts</CardTitle>
+                <CardDescription>
+                  Upload customer lists via CSV or add individual contacts to your database.
+                </CardDescription>
+              </CardHeader>
+            </Card>
+          </Link>
 
-          <Card className="hover:shadow-lg transition-shadow cursor-pointer">
-            <CardHeader>
-              <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg flex items-center justify-center mb-4">
-                <BarChart3 className="w-6 h-6 text-white" />
-              </div>
-              <CardTitle>View Analytics</CardTitle>
-              <CardDescription>
-                Deep dive into your campaign performance with detailed analytics and insights.
-              </CardDescription>
-            </CardHeader>
-          </Card>
+          <Link to="/campaigns">
+            <Card className="hover:shadow-lg transition-shadow cursor-pointer">
+              <CardHeader>
+                <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg flex items-center justify-center mb-4">
+                  <BarChart3 className="w-6 h-6 text-white" />
+                </div>
+                <CardTitle>View Analytics</CardTitle>
+                <CardDescription>
+                  Deep dive into your campaign performance with detailed analytics and insights.
+                </CardDescription>
+              </CardHeader>
+            </Card>
+          </Link>
         </div>
 
         {/* Coming Soon Notice */}
