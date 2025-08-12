@@ -1,12 +1,18 @@
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { 
-  Star, 
-  Plus, 
-  MessageSquare, 
-  BarChart3, 
-  Users, 
+import {
+  Star,
+  Plus,
+  MessageSquare,
+  BarChart3,
+  Users,
   Settings,
   Bell,
   Search,
@@ -14,7 +20,7 @@ import {
   Download,
   TrendingUp,
   Eye,
-  Send
+  Send,
 } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -56,7 +62,9 @@ export default function Dashboard() {
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
             <div>
               <h1 className="text-3xl font-bold text-gray-900">Dashboard</h1>
-              <p className="text-gray-600 mt-1">Welcome back, John! Here's how your campaigns are performing.</p>
+              <p className="text-gray-600 mt-1">
+                Welcome back, John! Here's how your campaigns are performing.
+              </p>
             </div>
             <div className="mt-4 sm:mt-0 flex space-x-3">
               <Button variant="outline">
@@ -77,7 +85,9 @@ export default function Dashboard() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
           <Card className="bg-gradient-to-br from-blue-50 to-blue-100 border-blue-200">
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm font-medium text-blue-700">Total Campaigns</CardTitle>
+              <CardTitle className="text-sm font-medium text-blue-700">
+                Total Campaigns
+              </CardTitle>
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold text-blue-900">12</div>
@@ -90,7 +100,9 @@ export default function Dashboard() {
 
           <Card className="bg-gradient-to-br from-green-50 to-green-100 border-green-200">
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm font-medium text-green-700">Messages Sent</CardTitle>
+              <CardTitle className="text-sm font-medium text-green-700">
+                Messages Sent
+              </CardTitle>
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold text-green-900">1,429</div>
@@ -103,7 +115,9 @@ export default function Dashboard() {
 
           <Card className="bg-gradient-to-br from-purple-50 to-purple-100 border-purple-200">
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm font-medium text-purple-700">Click Rate</CardTitle>
+              <CardTitle className="text-sm font-medium text-purple-700">
+                Click Rate
+              </CardTitle>
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold text-purple-900">24.8%</div>
@@ -116,7 +130,9 @@ export default function Dashboard() {
 
           <Card className="bg-gradient-to-br from-orange-50 to-orange-100 border-orange-200">
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm font-medium text-orange-700">Reviews Gained</CardTitle>
+              <CardTitle className="text-sm font-medium text-orange-700">
+                Reviews Gained
+              </CardTitle>
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold text-orange-900">87</div>
@@ -134,7 +150,9 @@ export default function Dashboard() {
             <div className="flex items-center justify-between">
               <div>
                 <CardTitle>Recent Campaigns</CardTitle>
-                <CardDescription>Your latest review request campaigns</CardDescription>
+                <CardDescription>
+                  Your latest review request campaigns
+                </CardDescription>
               </div>
               <div className="flex items-center space-x-2">
                 <Button variant="outline" size="sm">
@@ -157,7 +175,7 @@ export default function Dashboard() {
                   sent: 245,
                   clicks: 62,
                   rate: "25.3%",
-                  type: "SMS + Email"
+                  type: "SMS + Email",
                 },
                 {
                   name: "New Customer Outreach",
@@ -165,7 +183,7 @@ export default function Dashboard() {
                   sent: 189,
                   clicks: 43,
                   rate: "22.8%",
-                  type: "Email"
+                  type: "Email",
                 },
                 {
                   name: "Follow-up Campaign #3",
@@ -173,39 +191,57 @@ export default function Dashboard() {
                   sent: 0,
                   clicks: 0,
                   rate: "-",
-                  type: "SMS"
-                }
+                  type: "SMS",
+                },
               ].map((campaign, index) => (
-                <div key={index} className="flex items-center justify-between p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
+                <div
+                  key={index}
+                  className="flex items-center justify-between p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors"
+                >
                   <div className="flex items-center space-x-4">
                     <div className="w-10 h-10 bg-indigo-100 rounded-lg flex items-center justify-center">
                       <MessageSquare className="w-5 h-5 text-indigo-600" />
                     </div>
                     <div>
-                      <h4 className="font-medium text-gray-900">{campaign.name}</h4>
+                      <h4 className="font-medium text-gray-900">
+                        {campaign.name}
+                      </h4>
                       <div className="flex items-center space-x-2 mt-1">
-                        <Badge 
-                          variant={campaign.status === "Active" ? "default" : 
-                                  campaign.status === "Completed" ? "secondary" : "outline"}
+                        <Badge
+                          variant={
+                            campaign.status === "Active"
+                              ? "default"
+                              : campaign.status === "Completed"
+                                ? "secondary"
+                                : "outline"
+                          }
                           className="text-xs"
                         >
                           {campaign.status}
                         </Badge>
-                        <span className="text-sm text-gray-500">{campaign.type}</span>
+                        <span className="text-sm text-gray-500">
+                          {campaign.type}
+                        </span>
                       </div>
                     </div>
                   </div>
                   <div className="flex items-center space-x-6 text-sm text-gray-600">
                     <div className="text-center">
-                      <div className="font-medium text-gray-900">{campaign.sent}</div>
+                      <div className="font-medium text-gray-900">
+                        {campaign.sent}
+                      </div>
                       <div>Sent</div>
                     </div>
                     <div className="text-center">
-                      <div className="font-medium text-gray-900">{campaign.clicks}</div>
+                      <div className="font-medium text-gray-900">
+                        {campaign.clicks}
+                      </div>
                       <div>Clicks</div>
                     </div>
                     <div className="text-center">
-                      <div className="font-medium text-gray-900">{campaign.rate}</div>
+                      <div className="font-medium text-gray-900">
+                        {campaign.rate}
+                      </div>
                       <div>CTR</div>
                     </div>
                     <div className="flex space-x-2">
@@ -233,7 +269,8 @@ export default function Dashboard() {
                 </div>
                 <CardTitle>Create Campaign</CardTitle>
                 <CardDescription>
-                  Set up a new SMS or email campaign to request reviews from your customers.
+                  Set up a new SMS or email campaign to request reviews from
+                  your customers.
                 </CardDescription>
               </CardHeader>
             </Card>
@@ -247,7 +284,8 @@ export default function Dashboard() {
                 </div>
                 <CardTitle>Manage Contacts</CardTitle>
                 <CardDescription>
-                  Upload customer lists via CSV or add individual contacts to your database.
+                  Upload customer lists via CSV or add individual contacts to
+                  your database.
                 </CardDescription>
               </CardHeader>
             </Card>
@@ -261,7 +299,8 @@ export default function Dashboard() {
                 </div>
                 <CardTitle>View Analytics</CardTitle>
                 <CardDescription>
-                  Deep dive into your campaign performance with detailed analytics and insights.
+                  Deep dive into your campaign performance with detailed
+                  analytics and insights.
                 </CardDescription>
               </CardHeader>
             </Card>
@@ -276,8 +315,10 @@ export default function Dashboard() {
                 🚀 Full Dashboard Coming Soon!
               </h3>
               <p className="text-gray-600">
-                This is a preview of your OneClick Reviews dashboard. The complete functionality with campaign creation, 
-                contact management, template editor, SMS/Email sending, and detailed analytics will be available soon.
+                This is a preview of your OneClick Reviews dashboard. The
+                complete functionality with campaign creation, contact
+                management, template editor, SMS/Email sending, and detailed
+                analytics will be available soon.
               </p>
             </div>
             <Link to="/">

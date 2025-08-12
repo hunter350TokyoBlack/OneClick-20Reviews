@@ -1,7 +1,24 @@
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Star, MessageSquare, BarChart3, Clock, Shield, Zap, ArrowRight, CheckCircle, Mail, Phone } from "lucide-react";
+import {
+  Star,
+  MessageSquare,
+  BarChart3,
+  Clock,
+  Shield,
+  Zap,
+  ArrowRight,
+  CheckCircle,
+  Mail,
+  Phone,
+} from "lucide-react";
 import { Link } from "react-router-dom";
 
 export default function Index() {
@@ -20,7 +37,10 @@ export default function Index() {
               </span>
             </div>
             <div className="flex items-center space-x-4">
-              <Link to="/login" className="text-gray-600 hover:text-indigo-600 transition-colors">
+              <Link
+                to="/login"
+                className="text-gray-600 hover:text-indigo-600 transition-colors"
+              >
                 Login
               </Link>
               <Link to="/signup">
@@ -40,24 +60,35 @@ export default function Index() {
             ⚡ Boost Your Local Business
           </Badge>
           <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-            Get More <span className="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">Google Reviews</span>
+            Get More{" "}
+            <span className="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
+              Google Reviews
+            </span>
             <br />
             with Smart Campaigns
           </h1>
           <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed">
-            Send personalized review requests via SMS and email. Track clicks, measure success, and watch your business rating soar.
+            Send personalized review requests via SMS and email. Track clicks,
+            measure success, and watch your business rating soar.
           </p>
           <div className="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-4 mb-12">
             <Link to="/signup">
-              <Button size="lg" className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white px-8 py-3 text-lg">
+              <Button
+                size="lg"
+                className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white px-8 py-3 text-lg"
+              >
                 Start Free Trial <ArrowRight className="ml-2 w-5 h-5" />
               </Button>
             </Link>
-            <Button size="lg" variant="outline" className="border-indigo-200 text-indigo-600 hover:bg-indigo-50 px-8 py-3 text-lg">
+            <Button
+              size="lg"
+              variant="outline"
+              className="border-indigo-200 text-indigo-600 hover:bg-indigo-50 px-8 py-3 text-lg"
+            >
               Watch Demo
             </Button>
           </div>
-          
+
           {/* Stats */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
             <div className="text-center">
@@ -65,11 +96,15 @@ export default function Index() {
               <div className="text-gray-600">Response Rate</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-purple-600 mb-2">4.8★</div>
+              <div className="text-3xl font-bold text-purple-600 mb-2">
+                4.8★
+              </div>
               <div className="text-gray-600">Average Rating Boost</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-indigo-600 mb-2">10k+</div>
+              <div className="text-3xl font-bold text-indigo-600 mb-2">
+                10k+
+              </div>
               <div className="text-gray-600">Happy Businesses</div>
             </div>
           </div>
@@ -84,7 +119,8 @@ export default function Index() {
               Everything You Need to Grow Reviews
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Powerful tools designed to help local businesses collect more Google reviews and build trust with customers.
+              Powerful tools designed to help local businesses collect more
+              Google reviews and build trust with customers.
             </p>
           </div>
 
@@ -96,7 +132,8 @@ export default function Index() {
                 </div>
                 <CardTitle>Smart Campaigns</CardTitle>
                 <CardDescription>
-                  Create personalized SMS and email campaigns with custom templates and placeholders.
+                  Create personalized SMS and email campaigns with custom
+                  templates and placeholders.
                 </CardDescription>
               </CardHeader>
             </Card>
@@ -108,7 +145,8 @@ export default function Index() {
                 </div>
                 <CardTitle>Real-time Analytics</CardTitle>
                 <CardDescription>
-                  Track delivery rates, click-through rates, and conversion metrics with detailed dashboards.
+                  Track delivery rates, click-through rates, and conversion
+                  metrics with detailed dashboards.
                 </CardDescription>
               </CardHeader>
             </Card>
@@ -120,7 +158,8 @@ export default function Index() {
                 </div>
                 <CardTitle>One-Click Setup</CardTitle>
                 <CardDescription>
-                  Upload customer lists via CSV or add contacts manually. Get started in minutes, not hours.
+                  Upload customer lists via CSV or add contacts manually. Get
+                  started in minutes, not hours.
                 </CardDescription>
               </CardHeader>
             </Card>
@@ -132,7 +171,8 @@ export default function Index() {
                 </div>
                 <CardTitle>Automated Follow-ups</CardTitle>
                 <CardDescription>
-                  Set up automatic reminder sequences to maximize response rates and review collection.
+                  Set up automatic reminder sequences to maximize response rates
+                  and review collection.
                 </CardDescription>
               </CardHeader>
             </Card>
@@ -144,7 +184,8 @@ export default function Index() {
                 </div>
                 <CardTitle>Secure & Compliant</CardTitle>
                 <CardDescription>
-                  GDPR compliant with secure data handling. Your customer data is protected and encrypted.
+                  GDPR compliant with secure data handling. Your customer data
+                  is protected and encrypted.
                 </CardDescription>
               </CardHeader>
             </Card>
@@ -156,7 +197,8 @@ export default function Index() {
                 </div>
                 <CardTitle>Google Integration</CardTitle>
                 <CardDescription>
-                  Direct integration with Google My Business for seamless review collection and tracking.
+                  Direct integration with Google My Business for seamless review
+                  collection and tracking.
                 </CardDescription>
               </CardHeader>
             </Card>
@@ -172,7 +214,8 @@ export default function Index() {
               How OneClick Reviews Works
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Simple, effective, and proven. Get more reviews in just 3 easy steps.
+              Simple, effective, and proven. Get more reviews in just 3 easy
+              steps.
             </p>
           </div>
 
@@ -181,9 +224,12 @@ export default function Index() {
               <div className="w-16 h-16 bg-gradient-to-br from-indigo-600 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-6">
                 <span className="text-white font-bold text-xl">1</span>
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">Upload Customers</h3>
+              <h3 className="text-xl font-semibold text-gray-900 mb-4">
+                Upload Customers
+              </h3>
               <p className="text-gray-600">
-                Upload your customer list via CSV or add contacts manually. Include names, phone numbers, and email addresses.
+                Upload your customer list via CSV or add contacts manually.
+                Include names, phone numbers, and email addresses.
               </p>
             </div>
 
@@ -191,9 +237,12 @@ export default function Index() {
               <div className="w-16 h-16 bg-gradient-to-br from-indigo-600 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-6">
                 <span className="text-white font-bold text-xl">2</span>
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">Send Campaigns</h3>
+              <h3 className="text-xl font-semibold text-gray-900 mb-4">
+                Send Campaigns
+              </h3>
               <p className="text-gray-600">
-                Create personalized messages with custom templates. Send via SMS or email with one click.
+                Create personalized messages with custom templates. Send via SMS
+                or email with one click.
               </p>
             </div>
 
@@ -201,9 +250,12 @@ export default function Index() {
               <div className="w-16 h-16 bg-gradient-to-br from-indigo-600 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-6">
                 <span className="text-white font-bold text-xl">3</span>
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">Track Results</h3>
+              <h3 className="text-xl font-semibold text-gray-900 mb-4">
+                Track Results
+              </h3>
               <p className="text-gray-600">
-                Monitor delivery rates, click-through rates, and actual reviews received with real-time analytics.
+                Monitor delivery rates, click-through rates, and actual reviews
+                received with real-time analytics.
               </p>
             </div>
           </div>
@@ -217,11 +269,15 @@ export default function Index() {
             Ready to Boost Your Reviews?
           </h2>
           <p className="text-xl text-indigo-100 mb-8">
-            Join thousands of businesses already using OneClick Reviews to grow their online reputation.
+            Join thousands of businesses already using OneClick Reviews to grow
+            their online reputation.
           </p>
           <div className="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-4">
             <Link to="/signup">
-              <Button size="lg" className="bg-white text-indigo-600 hover:bg-gray-50 px-8 py-3 text-lg">
+              <Button
+                size="lg"
+                className="bg-white text-indigo-600 hover:bg-gray-50 px-8 py-3 text-lg"
+              >
                 Start Free Trial <ArrowRight className="ml-2 w-5 h-5" />
               </Button>
             </Link>
@@ -245,7 +301,8 @@ export default function Index() {
                 <span className="text-xl font-bold">OneClick Reviews</span>
               </div>
               <p className="text-gray-400 mb-4 max-w-md">
-                The easiest way to collect Google reviews and grow your local business reputation.
+                The easiest way to collect Google reviews and grow your local
+                business reputation.
               </p>
               <div className="flex space-x-4">
                 <div className="flex items-center text-gray-400">
@@ -254,28 +311,60 @@ export default function Index() {
                 </div>
               </div>
             </div>
-            
+
             <div>
               <h3 className="font-semibold mb-4">Product</h3>
               <ul className="space-y-2 text-gray-400">
-                <li><a href="#" className="hover:text-white transition-colors">Features</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Pricing</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Integrations</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">API</a></li>
+                <li>
+                  <a href="#" className="hover:text-white transition-colors">
+                    Features
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-white transition-colors">
+                    Pricing
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-white transition-colors">
+                    Integrations
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-white transition-colors">
+                    API
+                  </a>
+                </li>
               </ul>
             </div>
-            
+
             <div>
               <h3 className="font-semibold mb-4">Support</h3>
               <ul className="space-y-2 text-gray-400">
-                <li><a href="#" className="hover:text-white transition-colors">Help Center</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Contact</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Status</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Privacy</a></li>
+                <li>
+                  <a href="#" className="hover:text-white transition-colors">
+                    Help Center
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-white transition-colors">
+                    Contact
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-white transition-colors">
+                    Status
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-white transition-colors">
+                    Privacy
+                  </a>
+                </li>
               </ul>
             </div>
           </div>
-          
+
           <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
             <p>&copy; 2024 OneClick Reviews. All rights reserved.</p>
           </div>

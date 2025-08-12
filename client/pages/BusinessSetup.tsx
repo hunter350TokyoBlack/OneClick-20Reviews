@@ -2,10 +2,23 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Badge } from "@/components/ui/badge";
-import { Star, MapPin, ExternalLink, CheckCircle, AlertCircle, Search } from "lucide-react";
+import {
+  Star,
+  MapPin,
+  ExternalLink,
+  CheckCircle,
+  AlertCircle,
+  Search,
+} from "lucide-react";
 import { Link } from "react-router-dom";
 
 export default function BusinessSetup() {
@@ -23,7 +36,7 @@ export default function BusinessSetup() {
   const [isSearching, setIsSearching] = useState(false);
 
   const handleInputChange = (field: string, value: string) => {
-    setFormData(prev => ({ ...prev, [field]: value }));
+    setFormData((prev) => ({ ...prev, [field]: value }));
   };
 
   const searchGooglePlaces = async () => {
@@ -34,11 +47,11 @@ export default function BusinessSetup() {
 
     setIsSearching(true);
     setError("");
-    
+
     try {
       // Simulate Google Places API search
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+
       // Mock search results
       const mockResults = [
         {
@@ -47,18 +60,18 @@ export default function BusinessSetup() {
           formatted_address: "123 Main St, Anytown, ST 12345, USA",
           rating: 4.5,
           user_ratings_total: 127,
-          types: ["restaurant", "food", "establishment"]
+          types: ["restaurant", "food", "establishment"],
         },
         {
           place_id: "ChIJrTLr-GyuEmsRBfy61i59si0",
           name: `${formData.businessName} - Downtown`,
-          formatted_address: "456 Commerce Ave, Anytown, ST 12345, USA", 
+          formatted_address: "456 Commerce Ave, Anytown, ST 12345, USA",
           rating: 4.2,
           user_ratings_total: 89,
-          types: ["store", "establishment"]
-        }
+          types: ["store", "establishment"],
+        },
       ];
-      
+
       setSearchResults(mockResults);
     } catch (err) {
       setError("Failed to search Google Places. Please try again.");
@@ -68,11 +81,11 @@ export default function BusinessSetup() {
   };
 
   const selectPlace = (place: any) => {
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
       googlePlaceId: place.place_id,
       businessAddress: place.formatted_address,
-      businessName: place.name
+      businessName: place.name,
     }));
     setSearchResults([]);
   };
@@ -83,7 +96,9 @@ export default function BusinessSetup() {
     setError("");
 
     if (!formData.businessName || !formData.googlePlaceId) {
-      setError("Please fill in all required fields and select your business from Google Places.");
+      setError(
+        "Please fill in all required fields and select your business from Google Places.",
+      );
       setIsLoading(false);
       return;
     }
@@ -91,17 +106,16 @@ export default function BusinessSetup() {
     try {
       // TODO: Save business setup to backend
       console.log("Business setup:", formData);
-      
+
       // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      
+      await new Promise((resolve) => setTimeout(resolve, 1500));
+
       setSuccess(true);
-      
+
       // Redirect to dashboard after success
       setTimeout(() => {
         window.location.href = "/dashboard";
       }, 2000);
-      
     } catch (err) {
       setError("Failed to save business setup. Please try again.");
     } finally {
@@ -117,9 +131,12 @@ export default function BusinessSetup() {
             <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
               <CheckCircle className="w-8 h-8 text-green-600" />
             </div>
-            <h2 className="text-2xl font-bold text-gray-900 mb-2">Setup Complete!</h2>
+            <h2 className="text-2xl font-bold text-gray-900 mb-2">
+              Setup Complete!
+            </h2>
             <p className="text-gray-600 mb-4">
-              Your business has been successfully configured. Redirecting to dashboard...
+              Your business has been successfully configured. Redirecting to
+              dashboard...
             </p>
             <div className="flex justify-center">
               <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-indigo-600"></div>
@@ -145,9 +162,7 @@ export default function BusinessSetup() {
               </span>
             </Link>
             <Link to="/dashboard">
-              <Button variant="outline">
-                Skip Setup
-              </Button>
+              <Button variant="outline">Skip Setup</Button>
             </Link>
           </div>
         </div>
@@ -175,7 +190,8 @@ export default function BusinessSetup() {
               Business Information
             </CardTitle>
             <CardDescription>
-              We'll use this information to create personalized review links for your customers
+              We'll use this information to create personalized review links for
+              your customers
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -191,7 +207,10 @@ export default function BusinessSetup() {
 
               {/* Business Name */}
               <div className="space-y-2">
-                <Label htmlFor="businessName" className="text-sm font-medium text-gray-700">
+                <Label
+                  htmlFor="businessName"
+                  className="text-sm font-medium text-gray-700"
+                >
                   Business Name *
                 </Label>
                 <div className="flex space-x-2">
@@ -199,13 +218,15 @@ export default function BusinessSetup() {
                     id="businessName"
                     type="text"
                     value={formData.businessName}
-                    onChange={(e) => handleInputChange("businessName", e.target.value)}
+                    onChange={(e) =>
+                      handleInputChange("businessName", e.target.value)
+                    }
                     placeholder="Enter your business name"
                     className="flex-1"
                     required
                   />
-                  <Button 
-                    type="button" 
+                  <Button
+                    type="button"
                     onClick={searchGooglePlaces}
                     disabled={isSearching || !formData.businessName.trim()}
                     className="bg-indigo-600 hover:bg-indigo-700"
@@ -241,8 +262,12 @@ export default function BusinessSetup() {
                       >
                         <div className="flex justify-between items-start">
                           <div className="flex-1">
-                            <h4 className="font-medium text-gray-900">{place.name}</h4>
-                            <p className="text-sm text-gray-600">{place.formatted_address}</p>
+                            <h4 className="font-medium text-gray-900">
+                              {place.name}
+                            </h4>
+                            <p className="text-sm text-gray-600">
+                              {place.formatted_address}
+                            </p>
                             <div className="flex items-center mt-1">
                               <div className="flex items-center">
                                 {[...Array(5)].map((_, i) => (
@@ -256,7 +281,8 @@ export default function BusinessSetup() {
                                   />
                                 ))}
                                 <span className="text-xs text-gray-600 ml-1">
-                                  {place.rating} ({place.user_ratings_total} reviews)
+                                  {place.rating} ({place.user_ratings_total}{" "}
+                                  reviews)
                                 </span>
                               </div>
                             </div>
@@ -287,7 +313,12 @@ export default function BusinessSetup() {
                       type="button"
                       variant="outline"
                       size="sm"
-                      onClick={() => window.open(`https://www.google.com/maps/place/?q=place_id:${formData.googlePlaceId}`, '_blank')}
+                      onClick={() =>
+                        window.open(
+                          `https://www.google.com/maps/place/?q=place_id:${formData.googlePlaceId}`,
+                          "_blank",
+                        )
+                      }
                     >
                       <ExternalLink className="w-4 h-4" />
                     </Button>
@@ -301,27 +332,37 @@ export default function BusinessSetup() {
               {/* Additional Business Info */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <Label htmlFor="businessPhone" className="text-sm font-medium text-gray-700">
+                  <Label
+                    htmlFor="businessPhone"
+                    className="text-sm font-medium text-gray-700"
+                  >
                     Business Phone
                   </Label>
                   <Input
                     id="businessPhone"
                     type="tel"
                     value={formData.businessPhone}
-                    onChange={(e) => handleInputChange("businessPhone", e.target.value)}
+                    onChange={(e) =>
+                      handleInputChange("businessPhone", e.target.value)
+                    }
                     placeholder="(555) 123-4567"
                   />
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="businessWebsite" className="text-sm font-medium text-gray-700">
+                  <Label
+                    htmlFor="businessWebsite"
+                    className="text-sm font-medium text-gray-700"
+                  >
                     Website
                   </Label>
                   <Input
                     id="businessWebsite"
                     type="url"
                     value={formData.businessWebsite}
-                    onChange={(e) => handleInputChange("businessWebsite", e.target.value)}
+                    onChange={(e) =>
+                      handleInputChange("businessWebsite", e.target.value)
+                    }
                     placeholder="https://yourbusiness.com"
                   />
                 </div>
@@ -347,8 +388,8 @@ export default function BusinessSetup() {
                     Skip for Now
                   </Button>
                 </Link>
-                <Button 
-                  type="submit" 
+                <Button
+                  type="submit"
                   disabled={isLoading || !formData.googlePlaceId}
                   className="flex-1 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700"
                 >
@@ -370,8 +411,10 @@ export default function BusinessSetup() {
                 Why do we need your Google Place ID?
               </h3>
               <p className="mt-1 text-sm text-blue-700">
-                Your Google Place ID allows us to create direct links to your Google Business Profile review page. 
-                When customers click your review request links, they'll be taken directly to leave a review for your business.
+                Your Google Place ID allows us to create direct links to your
+                Google Business Profile review page. When customers click your
+                review request links, they'll be taken directly to leave a
+                review for your business.
               </p>
             </div>
           </div>

@@ -2,25 +2,31 @@ import { useState, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Badge } from "@/components/ui/badge";
 import { Checkbox } from "@/components/ui/checkbox";
-import { 
-  Star, 
-  Upload, 
-  Users, 
-  Search, 
-  Filter, 
-  Download, 
-  Plus, 
-  Trash2, 
+import {
+  Star,
+  Upload,
+  Users,
+  Search,
+  Filter,
+  Download,
+  Plus,
+  Trash2,
   Edit,
   MoreHorizontal,
   AlertCircle,
   CheckCircle,
   Mail,
-  Phone
+  Phone,
 } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -45,7 +51,7 @@ export default function Contacts() {
       phone: "(555) 123-4567",
       dateAdded: "2024-01-15",
       tags: ["VIP", "Repeat Customer"],
-      status: "active"
+      status: "active",
     },
     {
       id: "2",
@@ -55,7 +61,7 @@ export default function Contacts() {
       phone: "(555) 987-6543",
       dateAdded: "2024-01-10",
       tags: ["New Customer"],
-      status: "active"
+      status: "active",
     },
     {
       id: "3",
@@ -65,10 +71,10 @@ export default function Contacts() {
       phone: "(555) 456-7890",
       dateAdded: "2024-01-05",
       tags: [],
-      status: "unsubscribed"
-    }
+      status: "unsubscribed",
+    },
   ]);
-  
+
   const [selectedContacts, setSelectedContacts] = useState<string[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [filterStatus, setFilterStatus] = useState("all");
@@ -80,26 +86,27 @@ export default function Contacts() {
     lastName: "",
     email: "",
     phone: "",
-    tags: ""
+    tags: "",
   });
 
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  const filteredContacts = contacts.filter(contact => {
-    const matchesSearch = 
+  const filteredContacts = contacts.filter((contact) => {
+    const matchesSearch =
       contact.firstName.toLowerCase().includes(searchTerm.toLowerCase()) ||
       contact.lastName.toLowerCase().includes(searchTerm.toLowerCase()) ||
       contact.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
       contact.phone.includes(searchTerm);
-    
-    const matchesFilter = filterStatus === "all" || contact.status === filterStatus;
-    
+
+    const matchesFilter =
+      filterStatus === "all" || contact.status === filterStatus;
+
     return matchesSearch && matchesFilter;
   });
 
   const handleSelectAll = (checked: boolean) => {
     if (checked) {
-      setSelectedContacts(filteredContacts.map(c => c.id));
+      setSelectedContacts(filteredContacts.map((c) => c.id));
     } else {
       setSelectedContacts([]);
     }
@@ -107,14 +114,18 @@ export default function Contacts() {
 
   const handleSelectContact = (contactId: string, checked: boolean) => {
     if (checked) {
-      setSelectedContacts(prev => [...prev, contactId]);
+      setSelectedContacts((prev) => [...prev, contactId]);
     } else {
-      setSelectedContacts(prev => prev.filter(id => id !== contactId));
+      setSelectedContacts((prev) => prev.filter((id) => id !== contactId));
     }
   };
 
   const addContact = () => {
-    if (!newContact.firstName || !newContact.lastName || (!newContact.email && !newContact.phone)) {
+    if (
+      !newContact.firstName ||
+      !newContact.lastName ||
+      (!newContact.email && !newContact.phone)
+    ) {
       return;
     }
 
@@ -124,39 +135,48 @@ export default function Contacts() {
       lastName: newContact.lastName,
       email: newContact.email,
       phone: newContact.phone,
-      dateAdded: new Date().toISOString().split('T')[0],
-      tags: newContact.tags ? newContact.tags.split(',').map(t => t.trim()) : [],
-      status: "active"
+      dateAdded: new Date().toISOString().split("T")[0],
+      tags: newContact.tags
+        ? newContact.tags.split(",").map((t) => t.trim())
+        : [],
+      status: "active",
     };
 
-    setContacts(prev => [contact, ...prev]);
-    setNewContact({ firstName: "", lastName: "", email: "", phone: "", tags: "" });
+    setContacts((prev) => [contact, ...prev]);
+    setNewContact({
+      firstName: "",
+      lastName: "",
+      email: "",
+      phone: "",
+      tags: "",
+    });
     setShowAddForm(false);
   };
 
   const deleteContact = (contactId: string) => {
-    setContacts(prev => prev.filter(c => c.id !== contactId));
-    setSelectedContacts(prev => prev.filter(id => id !== contactId));
+    setContacts((prev) => prev.filter((c) => c.id !== contactId));
+    setSelectedContacts((prev) => prev.filter((id) => id !== contactId));
   };
 
   const deleteSelectedContacts = () => {
-    setContacts(prev => prev.filter(c => !selectedContacts.includes(c.id)));
+    setContacts((prev) => prev.filter((c) => !selectedContacts.includes(c.id)));
     setSelectedContacts([]);
   };
 
   const exportContacts = () => {
     const csvContent = [
       "First Name,Last Name,Email,Phone,Status,Tags,Date Added",
-      ...filteredContacts.map(contact => 
-        `"${contact.firstName}","${contact.lastName}","${contact.email}","${contact.phone}","${contact.status}","${contact.tags.join(';')}","${contact.dateAdded}"`
-      )
-    ].join('\n');
+      ...filteredContacts.map(
+        (contact) =>
+          `"${contact.firstName}","${contact.lastName}","${contact.email}","${contact.phone}","${contact.status}","${contact.tags.join(";")}","${contact.dateAdded}"`,
+      ),
+    ].join("\n");
 
-    const blob = new Blob([csvContent], { type: 'text/csv' });
+    const blob = new Blob([csvContent], { type: "text/csv" });
     const url = window.URL.createObjectURL(blob);
-    const link = document.createElement('a');
+    const link = document.createElement("a");
     link.href = url;
-    link.download = 'contacts-export.csv';
+    link.download = "contacts-export.csv";
     link.click();
     window.URL.revokeObjectURL(url);
   };
@@ -165,7 +185,7 @@ export default function Contacts() {
     const file = event.target.files?.[0];
     if (!file) return;
 
-    if (file.type !== "text/csv" && !file.name.endsWith('.csv')) {
+    if (file.type !== "text/csv" && !file.name.endsWith(".csv")) {
       setCsvError("Please upload a CSV file");
       return;
     }
@@ -180,32 +200,44 @@ export default function Contacts() {
     reader.onload = (e) => {
       try {
         const csvText = e.target?.result as string;
-        const lines = csvText.split('\n').filter(line => line.trim());
-        
+        const lines = csvText.split("\n").filter((line) => line.trim());
+
         if (lines.length < 2) {
-          setCsvError("CSV file must contain at least a header row and one data row");
+          setCsvError(
+            "CSV file must contain at least a header row and one data row",
+          );
           return;
         }
 
-        const headers = lines[0].split(',').map(h => h.trim().toLowerCase());
+        const headers = lines[0].split(",").map((h) => h.trim().toLowerCase());
         const parsedContacts: Contact[] = [];
-        
+
         for (let i = 1; i < lines.length; i++) {
-          const values = lines[i].split(',').map(v => v.trim().replace(/"/g, ''));
-          
+          const values = lines[i]
+            .split(",")
+            .map((v) => v.trim().replace(/"/g, ""));
+
           if (values.length >= 4) {
             const contact: Contact = {
               id: Date.now().toString() + i,
-              firstName: values[headers.findIndex(h => h.includes('first'))] || "",
-              lastName: values[headers.findIndex(h => h.includes('last'))] || "",
-              email: values[headers.findIndex(h => h.includes('email'))] || "",
-              phone: values[headers.findIndex(h => h.includes('phone'))] || "",
-              dateAdded: new Date().toISOString().split('T')[0],
+              firstName:
+                values[headers.findIndex((h) => h.includes("first"))] || "",
+              lastName:
+                values[headers.findIndex((h) => h.includes("last"))] || "",
+              email:
+                values[headers.findIndex((h) => h.includes("email"))] || "",
+              phone:
+                values[headers.findIndex((h) => h.includes("phone"))] || "",
+              dateAdded: new Date().toISOString().split("T")[0],
               tags: [],
-              status: "active"
+              status: "active",
             };
-            
-            if (contact.firstName && contact.lastName && (contact.email || contact.phone)) {
+
+            if (
+              contact.firstName &&
+              contact.lastName &&
+              (contact.email || contact.phone)
+            ) {
               parsedContacts.push(contact);
             }
           }
@@ -216,7 +248,7 @@ export default function Contacts() {
           return;
         }
 
-        setContacts(prev => [...parsedContacts, ...prev]);
+        setContacts((prev) => [...parsedContacts, ...prev]);
         setCsvError("");
         setCsvFile(null);
         if (fileInputRef.current) {
@@ -234,7 +266,9 @@ export default function Contacts() {
       case "active":
         return <Badge className="bg-green-100 text-green-800">Active</Badge>;
       case "unsubscribed":
-        return <Badge className="bg-gray-100 text-gray-800">Unsubscribed</Badge>;
+        return (
+          <Badge className="bg-gray-100 text-gray-800">Unsubscribed</Badge>
+        );
       case "bounced":
         return <Badge className="bg-red-100 text-red-800">Bounced</Badge>;
       default:
@@ -257,9 +291,7 @@ export default function Contacts() {
               </span>
             </Link>
             <Link to="/dashboard">
-              <Button variant="outline">
-                Back to Dashboard
-              </Button>
+              <Button variant="outline">Back to Dashboard</Button>
             </Link>
           </div>
         </div>
@@ -277,7 +309,10 @@ export default function Contacts() {
               <Download className="w-4 h-4 mr-2" />
               Export
             </Button>
-            <Button onClick={() => setShowAddForm(true)} className="bg-indigo-600 hover:bg-indigo-700">
+            <Button
+              onClick={() => setShowAddForm(true)}
+              className="bg-indigo-600 hover:bg-indigo-700"
+            >
               <Plus className="w-4 h-4 mr-2" />
               Add Contact
             </Button>
@@ -304,14 +339,16 @@ export default function Contacts() {
                 </AlertDescription>
               </Alert>
             )}
-            
-            <div 
+
+            <div
               className="border-2 border-dashed border-gray-300 rounded-lg p-4 text-center hover:border-indigo-400 transition-colors cursor-pointer"
               onClick={() => fileInputRef.current?.click()}
             >
               <Upload className="w-8 h-8 mx-auto text-gray-400 mb-2" />
               <p className="text-sm font-medium text-gray-900">
-                {csvFile ? csvFile.name : "Drop CSV file here or click to browse"}
+                {csvFile
+                  ? csvFile.name
+                  : "Drop CSV file here or click to browse"}
               </p>
               <p className="text-xs text-gray-500">
                 Supports: First Name, Last Name, Email, Phone
@@ -340,7 +377,12 @@ export default function Contacts() {
                   <Input
                     id="firstName"
                     value={newContact.firstName}
-                    onChange={(e) => setNewContact(prev => ({ ...prev, firstName: e.target.value }))}
+                    onChange={(e) =>
+                      setNewContact((prev) => ({
+                        ...prev,
+                        firstName: e.target.value,
+                      }))
+                    }
                     placeholder="John"
                   />
                 </div>
@@ -349,7 +391,12 @@ export default function Contacts() {
                   <Input
                     id="lastName"
                     value={newContact.lastName}
-                    onChange={(e) => setNewContact(prev => ({ ...prev, lastName: e.target.value }))}
+                    onChange={(e) =>
+                      setNewContact((prev) => ({
+                        ...prev,
+                        lastName: e.target.value,
+                      }))
+                    }
                     placeholder="Doe"
                   />
                 </div>
@@ -359,7 +406,12 @@ export default function Contacts() {
                     id="email"
                     type="email"
                     value={newContact.email}
-                    onChange={(e) => setNewContact(prev => ({ ...prev, email: e.target.value }))}
+                    onChange={(e) =>
+                      setNewContact((prev) => ({
+                        ...prev,
+                        email: e.target.value,
+                      }))
+                    }
                     placeholder="john@example.com"
                   />
                 </div>
@@ -369,7 +421,12 @@ export default function Contacts() {
                     id="phone"
                     type="tel"
                     value={newContact.phone}
-                    onChange={(e) => setNewContact(prev => ({ ...prev, phone: e.target.value }))}
+                    onChange={(e) =>
+                      setNewContact((prev) => ({
+                        ...prev,
+                        phone: e.target.value,
+                      }))
+                    }
                     placeholder="(555) 123-4567"
                   />
                 </div>
@@ -378,13 +435,21 @@ export default function Contacts() {
                   <Input
                     id="tags"
                     value={newContact.tags}
-                    onChange={(e) => setNewContact(prev => ({ ...prev, tags: e.target.value }))}
+                    onChange={(e) =>
+                      setNewContact((prev) => ({
+                        ...prev,
+                        tags: e.target.value,
+                      }))
+                    }
                     placeholder="VIP, Regular"
                   />
                 </div>
               </div>
               <div className="flex space-x-2 mt-4">
-                <Button onClick={addContact} className="bg-indigo-600 hover:bg-indigo-700">
+                <Button
+                  onClick={addContact}
+                  className="bg-indigo-600 hover:bg-indigo-700"
+                >
                   <Plus className="w-4 h-4 mr-2" />
                   Add Contact
                 </Button>
@@ -408,9 +473,9 @@ export default function Contacts() {
                 className="pl-10"
               />
             </div>
-            
-            <select 
-              value={filterStatus} 
+
+            <select
+              value={filterStatus}
               onChange={(e) => setFilterStatus(e.target.value)}
               className="border border-gray-300 rounded-md px-3 py-2 text-sm"
             >
@@ -426,7 +491,11 @@ export default function Contacts() {
               <span className="text-sm text-gray-600">
                 {selectedContacts.length} selected
               </span>
-              <Button variant="outline" size="sm" onClick={deleteSelectedContacts}>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={deleteSelectedContacts}
+              >
                 <Trash2 className="w-4 h-4 mr-2" />
                 Delete Selected
               </Button>
@@ -443,7 +512,10 @@ export default function Contacts() {
                   <tr>
                     <th className="px-6 py-3 text-left">
                       <Checkbox
-                        checked={selectedContacts.length === filteredContacts.length && filteredContacts.length > 0}
+                        checked={
+                          selectedContacts.length === filteredContacts.length &&
+                          filteredContacts.length > 0
+                        }
                         onCheckedChange={handleSelectAll}
                       />
                     </th>
@@ -473,14 +545,17 @@ export default function Contacts() {
                       <td className="px-6 py-4">
                         <Checkbox
                           checked={selectedContacts.includes(contact.id)}
-                          onCheckedChange={(checked) => handleSelectContact(contact.id, checked as boolean)}
+                          onCheckedChange={(checked) =>
+                            handleSelectContact(contact.id, checked as boolean)
+                          }
                         />
                       </td>
                       <td className="px-6 py-4">
                         <div className="flex items-center">
                           <div className="w-10 h-10 bg-indigo-100 rounded-full flex items-center justify-center">
                             <span className="text-sm font-medium text-indigo-600">
-                              {contact.firstName[0]}{contact.lastName[0]}
+                              {contact.firstName[0]}
+                              {contact.lastName[0]}
                             </span>
                           </div>
                           <div className="ml-4">
@@ -512,7 +587,11 @@ export default function Contacts() {
                       <td className="px-6 py-4">
                         <div className="flex flex-wrap gap-1">
                           {contact.tags.map((tag, index) => (
-                            <Badge key={index} variant="outline" className="text-xs">
+                            <Badge
+                              key={index}
+                              variant="outline"
+                              className="text-xs"
+                            >
                               {tag}
                             </Badge>
                           ))}
@@ -526,8 +605,8 @@ export default function Contacts() {
                           <Button variant="ghost" size="sm">
                             <Edit className="w-4 h-4" />
                           </Button>
-                          <Button 
-                            variant="ghost" 
+                          <Button
+                            variant="ghost"
                             size="sm"
                             onClick={() => deleteContact(contact.id)}
                           >
@@ -544,15 +623,19 @@ export default function Contacts() {
             {filteredContacts.length === 0 && (
               <div className="text-center py-12">
                 <Users className="w-12 h-12 mx-auto text-gray-400 mb-4" />
-                <h3 className="text-lg font-medium text-gray-900 mb-2">No contacts found</h3>
+                <h3 className="text-lg font-medium text-gray-900 mb-2">
+                  No contacts found
+                </h3>
                 <p className="text-gray-500 mb-4">
-                  {contacts.length === 0 
-                    ? "Get started by adding your first contact or importing a CSV file." 
-                    : "Try adjusting your search or filter criteria."
-                  }
+                  {contacts.length === 0
+                    ? "Get started by adding your first contact or importing a CSV file."
+                    : "Try adjusting your search or filter criteria."}
                 </p>
                 {contacts.length === 0 && (
-                  <Button onClick={() => setShowAddForm(true)} className="bg-indigo-600 hover:bg-indigo-700">
+                  <Button
+                    onClick={() => setShowAddForm(true)}
+                    className="bg-indigo-600 hover:bg-indigo-700"
+                  >
                     <Plus className="w-4 h-4 mr-2" />
                     Add First Contact
                   </Button>
@@ -566,14 +649,16 @@ export default function Contacts() {
         <div className="mt-6 grid grid-cols-1 md:grid-cols-4 gap-4">
           <Card>
             <CardContent className="p-4">
-              <div className="text-2xl font-bold text-gray-900">{contacts.length}</div>
+              <div className="text-2xl font-bold text-gray-900">
+                {contacts.length}
+              </div>
               <div className="text-sm text-gray-600">Total Contacts</div>
             </CardContent>
           </Card>
           <Card>
             <CardContent className="p-4">
               <div className="text-2xl font-bold text-green-600">
-                {contacts.filter(c => c.status === "active").length}
+                {contacts.filter((c) => c.status === "active").length}
               </div>
               <div className="text-sm text-gray-600">Active</div>
             </CardContent>
@@ -581,7 +666,7 @@ export default function Contacts() {
           <Card>
             <CardContent className="p-4">
               <div className="text-2xl font-bold text-gray-600">
-                {contacts.filter(c => c.status === "unsubscribed").length}
+                {contacts.filter((c) => c.status === "unsubscribed").length}
               </div>
               <div className="text-sm text-gray-600">Unsubscribed</div>
             </CardContent>
@@ -589,7 +674,7 @@ export default function Contacts() {
           <Card>
             <CardContent className="p-4">
               <div className="text-2xl font-bold text-red-600">
-                {contacts.filter(c => c.status === "bounced").length}
+                {contacts.filter((c) => c.status === "bounced").length}
               </div>
               <div className="text-sm text-gray-600">Bounced</div>
             </CardContent>

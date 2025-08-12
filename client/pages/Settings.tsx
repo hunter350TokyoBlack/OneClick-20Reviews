@@ -3,18 +3,24 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Switch } from "@/components/ui/switch";
-import { 
-  Star, 
-  Settings as SettingsIcon, 
-  Key, 
-  Bell, 
-  User, 
-  Building, 
+import {
+  Star,
+  Settings as SettingsIcon,
+  Key,
+  Bell,
+  User,
+  Building,
   CreditCard,
   Shield,
   Save,
@@ -23,7 +29,7 @@ import {
   Eye,
   EyeOff,
   ExternalLink,
-  MapPin
+  MapPin,
 } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -53,7 +59,8 @@ export default function Settings() {
     twilioAccountSid: "ACxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
     twilioAuthToken: "••••••••••••••••••••••••••••••••",
     twilioPhoneNumber: "+15551234567",
-    sendGridApiKey: "••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••",
+    sendGridApiKey:
+      "••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••",
     sendGridFromEmail: "noreply@joesrestaurant.com",
     sendGridFromName: "Joe's Restaurant",
   });
@@ -72,11 +79,16 @@ export default function Settings() {
 
     try {
       // TODO: Save to backend
-      console.log(`Saving ${section}:`, { profileData, businessData, apiKeys, notifications });
-      
+      console.log(`Saving ${section}:`, {
+        profileData,
+        businessData,
+        apiKeys,
+        notifications,
+      });
+
       // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+
       setSaveSuccess(true);
       setTimeout(() => setSaveSuccess(false), 3000);
     } catch (error) {
@@ -111,9 +123,7 @@ export default function Settings() {
               </span>
             </Link>
             <Link to="/dashboard">
-              <Button variant="outline">
-                Back to Dashboard
-              </Button>
+              <Button variant="outline">Back to Dashboard</Button>
             </Link>
           </div>
         </div>
@@ -126,7 +136,9 @@ export default function Settings() {
             <SettingsIcon className="w-8 h-8 mr-3 text-indigo-600" />
             Settings
           </h1>
-          <p className="text-gray-600 mt-1">Manage your account, business, and integration settings</p>
+          <p className="text-gray-600 mt-1">
+            Manage your account, business, and integration settings
+          </p>
         </div>
 
         {/* Success Alert */}
@@ -139,7 +151,11 @@ export default function Settings() {
           </Alert>
         )}
 
-        <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
+        <Tabs
+          value={activeTab}
+          onValueChange={setActiveTab}
+          className="space-y-6"
+        >
           <TabsList className="grid w-full grid-cols-5">
             <TabsTrigger value="profile" className="flex items-center">
               <User className="w-4 h-4 mr-2" />
@@ -179,7 +195,12 @@ export default function Settings() {
                     <Input
                       id="firstName"
                       value={profileData.firstName}
-                      onChange={(e) => setProfileData(prev => ({ ...prev, firstName: e.target.value }))}
+                      onChange={(e) =>
+                        setProfileData((prev) => ({
+                          ...prev,
+                          firstName: e.target.value,
+                        }))
+                      }
                     />
                   </div>
                   <div className="space-y-2">
@@ -187,7 +208,12 @@ export default function Settings() {
                     <Input
                       id="lastName"
                       value={profileData.lastName}
-                      onChange={(e) => setProfileData(prev => ({ ...prev, lastName: e.target.value }))}
+                      onChange={(e) =>
+                        setProfileData((prev) => ({
+                          ...prev,
+                          lastName: e.target.value,
+                        }))
+                      }
                     />
                   </div>
                 </div>
@@ -198,7 +224,12 @@ export default function Settings() {
                     id="email"
                     type="email"
                     value={profileData.email}
-                    onChange={(e) => setProfileData(prev => ({ ...prev, email: e.target.value }))}
+                    onChange={(e) =>
+                      setProfileData((prev) => ({
+                        ...prev,
+                        email: e.target.value,
+                      }))
+                    }
                   />
                 </div>
 
@@ -208,12 +239,17 @@ export default function Settings() {
                     id="phone"
                     type="tel"
                     value={profileData.phone}
-                    onChange={(e) => setProfileData(prev => ({ ...prev, phone: e.target.value }))}
+                    onChange={(e) =>
+                      setProfileData((prev) => ({
+                        ...prev,
+                        phone: e.target.value,
+                      }))
+                    }
                   />
                 </div>
 
                 <div className="flex justify-end">
-                  <Button 
+                  <Button
                     onClick={() => handleSave("profile")}
                     disabled={isSaving}
                     className="bg-indigo-600 hover:bg-indigo-700"
@@ -234,7 +270,8 @@ export default function Settings() {
                   Business Information
                 </CardTitle>
                 <CardDescription>
-                  Manage your business details and Google Business Profile connection
+                  Manage your business details and Google Business Profile
+                  connection
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-6">
@@ -243,7 +280,12 @@ export default function Settings() {
                   <Input
                     id="businessName"
                     value={businessData.businessName}
-                    onChange={(e) => setBusinessData(prev => ({ ...prev, businessName: e.target.value }))}
+                    onChange={(e) =>
+                      setBusinessData((prev) => ({
+                        ...prev,
+                        businessName: e.target.value,
+                      }))
+                    }
                   />
                 </div>
 
@@ -253,19 +295,30 @@ export default function Settings() {
                     <Input
                       id="googlePlaceId"
                       value={businessData.googlePlaceId}
-                      onChange={(e) => setBusinessData(prev => ({ ...prev, googlePlaceId: e.target.value }))}
+                      onChange={(e) =>
+                        setBusinessData((prev) => ({
+                          ...prev,
+                          googlePlaceId: e.target.value,
+                        }))
+                      }
                       className="flex-1"
                     />
-                    <Button 
-                      type="button" 
+                    <Button
+                      type="button"
                       variant="outline"
-                      onClick={() => window.open(`https://www.google.com/maps/place/?q=place_id:${businessData.googlePlaceId}`, '_blank')}
+                      onClick={() =>
+                        window.open(
+                          `https://www.google.com/maps/place/?q=place_id:${businessData.googlePlaceId}`,
+                          "_blank",
+                        )
+                      }
                     >
                       <ExternalLink className="w-4 h-4" />
                     </Button>
                   </div>
                   <p className="text-sm text-gray-500">
-                    This links your campaigns to your Google Business Profile review page
+                    This links your campaigns to your Google Business Profile
+                    review page
                   </p>
                 </div>
 
@@ -274,7 +327,12 @@ export default function Settings() {
                   <Input
                     id="businessAddress"
                     value={businessData.businessAddress}
-                    onChange={(e) => setBusinessData(prev => ({ ...prev, businessAddress: e.target.value }))}
+                    onChange={(e) =>
+                      setBusinessData((prev) => ({
+                        ...prev,
+                        businessAddress: e.target.value,
+                      }))
+                    }
                   />
                 </div>
 
@@ -285,7 +343,12 @@ export default function Settings() {
                       id="businessPhone"
                       type="tel"
                       value={businessData.businessPhone}
-                      onChange={(e) => setBusinessData(prev => ({ ...prev, businessPhone: e.target.value }))}
+                      onChange={(e) =>
+                        setBusinessData((prev) => ({
+                          ...prev,
+                          businessPhone: e.target.value,
+                        }))
+                      }
                     />
                   </div>
                   <div className="space-y-2">
@@ -294,13 +357,18 @@ export default function Settings() {
                       id="businessWebsite"
                       type="url"
                       value={businessData.businessWebsite}
-                      onChange={(e) => setBusinessData(prev => ({ ...prev, businessWebsite: e.target.value }))}
+                      onChange={(e) =>
+                        setBusinessData((prev) => ({
+                          ...prev,
+                          businessWebsite: e.target.value,
+                        }))
+                      }
                     />
                   </div>
                 </div>
 
                 <div className="flex justify-end">
-                  <Button 
+                  <Button
                     onClick={() => handleSave("business")}
                     disabled={isSaving}
                     className="bg-indigo-600 hover:bg-indigo-700"
@@ -321,11 +389,15 @@ export default function Settings() {
                   <CardTitle className="flex items-center justify-between">
                     <div className="flex items-center">
                       <div className="w-8 h-8 bg-red-100 rounded-lg flex items-center justify-center mr-3">
-                        <span className="text-red-600 font-bold text-sm">T</span>
+                        <span className="text-red-600 font-bold text-sm">
+                          T
+                        </span>
                       </div>
                       Twilio (SMS)
                     </div>
-                    <Badge className="bg-green-100 text-green-800">Connected</Badge>
+                    <Badge className="bg-green-100 text-green-800">
+                      Connected
+                    </Badge>
                   </CardTitle>
                   <CardDescription>
                     Configure your Twilio credentials for SMS campaigns
@@ -337,7 +409,12 @@ export default function Settings() {
                     <Input
                       id="twilioSid"
                       value={apiKeys.twilioAccountSid}
-                      onChange={(e) => setApiKeys(prev => ({ ...prev, twilioAccountSid: e.target.value }))}
+                      onChange={(e) =>
+                        setApiKeys((prev) => ({
+                          ...prev,
+                          twilioAccountSid: e.target.value,
+                        }))
+                      }
                       placeholder="ACxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
                     />
                   </div>
@@ -349,7 +426,12 @@ export default function Settings() {
                         id="twilioToken"
                         type={showTwilioKey ? "text" : "password"}
                         value={apiKeys.twilioAuthToken}
-                        onChange={(e) => setApiKeys(prev => ({ ...prev, twilioAuthToken: e.target.value }))}
+                        onChange={(e) =>
+                          setApiKeys((prev) => ({
+                            ...prev,
+                            twilioAuthToken: e.target.value,
+                          }))
+                        }
                         placeholder="Your Twilio Auth Token"
                         className="pr-10"
                       />
@@ -360,7 +442,11 @@ export default function Settings() {
                         className="absolute inset-y-0 right-0 pr-3 flex items-center"
                         onClick={() => setShowTwilioKey(!showTwilioKey)}
                       >
-                        {showTwilioKey ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                        {showTwilioKey ? (
+                          <EyeOff className="w-4 h-4" />
+                        ) : (
+                          <Eye className="w-4 h-4" />
+                        )}
                       </Button>
                     </div>
                   </div>
@@ -370,7 +456,12 @@ export default function Settings() {
                     <Input
                       id="twilioPhone"
                       value={apiKeys.twilioPhoneNumber}
-                      onChange={(e) => setApiKeys(prev => ({ ...prev, twilioPhoneNumber: e.target.value }))}
+                      onChange={(e) =>
+                        setApiKeys((prev) => ({
+                          ...prev,
+                          twilioPhoneNumber: e.target.value,
+                        }))
+                      }
                       placeholder="+15551234567"
                     />
                   </div>
@@ -379,7 +470,7 @@ export default function Settings() {
                     <Button variant="outline" onClick={testTwilioConnection}>
                       Test Connection
                     </Button>
-                    <Button 
+                    <Button
                       onClick={() => handleSave("twilio")}
                       disabled={isSaving}
                     >
@@ -395,11 +486,15 @@ export default function Settings() {
                   <CardTitle className="flex items-center justify-between">
                     <div className="flex items-center">
                       <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center mr-3">
-                        <span className="text-blue-600 font-bold text-sm">S</span>
+                        <span className="text-blue-600 font-bold text-sm">
+                          S
+                        </span>
                       </div>
                       SendGrid (Email)
                     </div>
-                    <Badge className="bg-green-100 text-green-800">Connected</Badge>
+                    <Badge className="bg-green-100 text-green-800">
+                      Connected
+                    </Badge>
                   </CardTitle>
                   <CardDescription>
                     Configure your SendGrid credentials for email campaigns
@@ -413,7 +508,12 @@ export default function Settings() {
                         id="sendGridKey"
                         type={showSendGridKey ? "text" : "password"}
                         value={apiKeys.sendGridApiKey}
-                        onChange={(e) => setApiKeys(prev => ({ ...prev, sendGridApiKey: e.target.value }))}
+                        onChange={(e) =>
+                          setApiKeys((prev) => ({
+                            ...prev,
+                            sendGridApiKey: e.target.value,
+                          }))
+                        }
                         placeholder="SG.xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
                         className="pr-10"
                       />
@@ -424,7 +524,11 @@ export default function Settings() {
                         className="absolute inset-y-0 right-0 pr-3 flex items-center"
                         onClick={() => setShowSendGridKey(!showSendGridKey)}
                       >
-                        {showSendGridKey ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                        {showSendGridKey ? (
+                          <EyeOff className="w-4 h-4" />
+                        ) : (
+                          <Eye className="w-4 h-4" />
+                        )}
                       </Button>
                     </div>
                   </div>
@@ -436,7 +540,12 @@ export default function Settings() {
                         id="fromEmail"
                         type="email"
                         value={apiKeys.sendGridFromEmail}
-                        onChange={(e) => setApiKeys(prev => ({ ...prev, sendGridFromEmail: e.target.value }))}
+                        onChange={(e) =>
+                          setApiKeys((prev) => ({
+                            ...prev,
+                            sendGridFromEmail: e.target.value,
+                          }))
+                        }
                         placeholder="noreply@yourbusiness.com"
                       />
                     </div>
@@ -445,7 +554,12 @@ export default function Settings() {
                       <Input
                         id="fromName"
                         value={apiKeys.sendGridFromName}
-                        onChange={(e) => setApiKeys(prev => ({ ...prev, sendGridFromName: e.target.value }))}
+                        onChange={(e) =>
+                          setApiKeys((prev) => ({
+                            ...prev,
+                            sendGridFromName: e.target.value,
+                          }))
+                        }
                         placeholder="Your Business Name"
                       />
                     </div>
@@ -455,7 +569,7 @@ export default function Settings() {
                     <Button variant="outline" onClick={testSendGridConnection}>
                       Test Connection
                     </Button>
-                    <Button 
+                    <Button
                       onClick={() => handleSave("sendgrid")}
                       disabled={isSaving}
                     >
@@ -481,12 +595,17 @@ export default function Settings() {
                   <div className="flex items-center justify-between">
                     <div>
                       <Label>Campaign Results</Label>
-                      <p className="text-sm text-gray-500">Get notified when campaigns complete</p>
+                      <p className="text-sm text-gray-500">
+                        Get notified when campaigns complete
+                      </p>
                     </div>
                     <Switch
                       checked={notifications.emailCampaignResults}
-                      onCheckedChange={(checked) => 
-                        setNotifications(prev => ({ ...prev, emailCampaignResults: checked }))
+                      onCheckedChange={(checked) =>
+                        setNotifications((prev) => ({
+                          ...prev,
+                          emailCampaignResults: checked,
+                        }))
                       }
                     />
                   </div>
@@ -494,12 +613,17 @@ export default function Settings() {
                   <div className="flex items-center justify-between">
                     <div>
                       <Label>New Reviews</Label>
-                      <p className="text-sm text-gray-500">Get notified when you receive new reviews</p>
+                      <p className="text-sm text-gray-500">
+                        Get notified when you receive new reviews
+                      </p>
                     </div>
                     <Switch
                       checked={notifications.emailNewReviews}
-                      onCheckedChange={(checked) => 
-                        setNotifications(prev => ({ ...prev, emailNewReviews: checked }))
+                      onCheckedChange={(checked) =>
+                        setNotifications((prev) => ({
+                          ...prev,
+                          emailNewReviews: checked,
+                        }))
                       }
                     />
                   </div>
@@ -507,12 +631,17 @@ export default function Settings() {
                   <div className="flex items-center justify-between">
                     <div>
                       <Label>Weekly Reports</Label>
-                      <p className="text-sm text-gray-500">Receive weekly performance summaries</p>
+                      <p className="text-sm text-gray-500">
+                        Receive weekly performance summaries
+                      </p>
                     </div>
                     <Switch
                       checked={notifications.emailWeeklyReport}
-                      onCheckedChange={(checked) => 
-                        setNotifications(prev => ({ ...prev, emailWeeklyReport: checked }))
+                      onCheckedChange={(checked) =>
+                        setNotifications((prev) => ({
+                          ...prev,
+                          emailWeeklyReport: checked,
+                        }))
                       }
                     />
                   </div>
@@ -520,12 +649,17 @@ export default function Settings() {
                   <div className="flex items-center justify-between">
                     <div>
                       <Label>SMS Delivery Failures</Label>
-                      <p className="text-sm text-gray-500">Get notified about failed SMS deliveries</p>
+                      <p className="text-sm text-gray-500">
+                        Get notified about failed SMS deliveries
+                      </p>
                     </div>
                     <Switch
                       checked={notifications.smsDeliveryFailures}
-                      onCheckedChange={(checked) => 
-                        setNotifications(prev => ({ ...prev, smsDeliveryFailures: checked }))
+                      onCheckedChange={(checked) =>
+                        setNotifications((prev) => ({
+                          ...prev,
+                          smsDeliveryFailures: checked,
+                        }))
                       }
                     />
                   </div>
@@ -533,19 +667,24 @@ export default function Settings() {
                   <div className="flex items-center justify-between">
                     <div>
                       <Label>Campaign Completion (SMS)</Label>
-                      <p className="text-sm text-gray-500">Get SMS when campaigns complete</p>
+                      <p className="text-sm text-gray-500">
+                        Get SMS when campaigns complete
+                      </p>
                     </div>
                     <Switch
                       checked={notifications.smsCampaignComplete}
-                      onCheckedChange={(checked) => 
-                        setNotifications(prev => ({ ...prev, smsCampaignComplete: checked }))
+                      onCheckedChange={(checked) =>
+                        setNotifications((prev) => ({
+                          ...prev,
+                          smsCampaignComplete: checked,
+                        }))
                       }
                     />
                   </div>
                 </div>
 
                 <div className="flex justify-end">
-                  <Button 
+                  <Button
                     onClick={() => handleSave("notifications")}
                     disabled={isSaving}
                     className="bg-indigo-600 hover:bg-indigo-700"
@@ -570,9 +709,15 @@ export default function Settings() {
                 <div className="bg-gradient-to-r from-indigo-50 to-purple-50 p-6 rounded-lg border border-indigo-200">
                   <div className="flex items-center justify-between">
                     <div>
-                      <h3 className="text-lg font-semibold text-gray-900">Pro Plan</h3>
-                      <p className="text-gray-600">$49/month - Unlimited campaigns</p>
-                      <Badge className="mt-2 bg-green-100 text-green-800">Active</Badge>
+                      <h3 className="text-lg font-semibold text-gray-900">
+                        Pro Plan
+                      </h3>
+                      <p className="text-gray-600">
+                        $49/month - Unlimited campaigns
+                      </p>
+                      <Badge className="mt-2 bg-green-100 text-green-800">
+                        Active
+                      </Badge>
                     </div>
                     <div className="text-right">
                       <p className="text-2xl font-bold text-indigo-600">$49</p>
@@ -591,7 +736,9 @@ export default function Settings() {
                         </div>
                         <div>
                           <p className="font-medium">•••• •••• •••• 4242</p>
-                          <p className="text-sm text-gray-500">Expires 12/2025</p>
+                          <p className="text-sm text-gray-500">
+                            Expires 12/2025
+                          </p>
                         </div>
                       </div>
                       <Button variant="outline" size="sm">
@@ -602,10 +749,14 @@ export default function Settings() {
                 </div>
 
                 <div className="space-y-4">
-                  <h4 className="font-medium text-gray-900">Usage This Month</h4>
+                  <h4 className="font-medium text-gray-900">
+                    Usage This Month
+                  </h4>
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <div className="border border-gray-200 rounded-lg p-4 text-center">
-                      <p className="text-2xl font-bold text-indigo-600">1,429</p>
+                      <p className="text-2xl font-bold text-indigo-600">
+                        1,429
+                      </p>
                       <p className="text-sm text-gray-500">Messages Sent</p>
                     </div>
                     <div className="border border-gray-200 rounded-lg p-4 text-center">
@@ -620,13 +771,12 @@ export default function Settings() {
                 </div>
 
                 <div className="flex space-x-4">
-                  <Button variant="outline">
-                    View Invoices
-                  </Button>
-                  <Button variant="outline">
-                    Update Billing
-                  </Button>
-                  <Button variant="outline" className="text-red-600 border-red-200 hover:bg-red-50">
+                  <Button variant="outline">View Invoices</Button>
+                  <Button variant="outline">Update Billing</Button>
+                  <Button
+                    variant="outline"
+                    className="text-red-600 border-red-200 hover:bg-red-50"
+                  >
                     Cancel Subscription
                   </Button>
                 </div>
