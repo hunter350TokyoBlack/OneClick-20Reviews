@@ -63,10 +63,12 @@ export default function Dashboard() {
                 <Download className="w-4 h-4 mr-2" />
                 Export Data
               </Button>
-              <Button className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700">
-                <Plus className="w-4 h-4 mr-2" />
-                New Campaign
-              </Button>
+              <Link to="/create-campaign">
+                <Button className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700">
+                  <Plus className="w-4 h-4 mr-2" />
+                  New Campaign
+                </Button>
+              </Link>
             </div>
           </div>
         </div>
